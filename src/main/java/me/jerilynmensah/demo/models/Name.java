@@ -18,7 +18,7 @@ public class Name {
     private long name;
 
     @NotNull
-    @Size(min=5, max=30)
+    @Size(min = 5, max = 30)
     private String email;
     private String organization;
 
@@ -26,6 +26,7 @@ public class Name {
     private String startDate;
     @DateTimeFormat
     private String endDate;
+    long daysEmployed;
 
     public long getName() {
         return name;
@@ -67,4 +68,12 @@ public class Name {
         this.endDate = endDate;
     }
 
+    public long getDaysEmployed() {
+        return daysEmployed;
+    }
+
+    public void setDaysEmployed(long daysEmployed) {
+        this.daysEmployed = daysEmployed;
+    }
 }
+
