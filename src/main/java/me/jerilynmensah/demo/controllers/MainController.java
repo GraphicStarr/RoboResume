@@ -6,11 +6,15 @@ import org.hibernate.validator.constraints.Email;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.validation.Valid;
+
+import static com.sun.xml.internal.ws.policy.sourcemodel.wspolicy.XmlToken.All;
 
 @Controller
 public class MainController
@@ -26,39 +30,48 @@ public class MainController
 
     @GetMapping("/addname")
     public String showName (Model model){
-        model.addAttribute("newName", new Name());
+        model.addAttribute("newName",  showName());
         return "addname";
     }
 
     @GetMapping("/addemail")
     public String showEmail (Model model){
-        model.addAttribute("newEmail", new Email());
+        model.addAttribute("newEmail", showEmail());
         return "addemail";
     }
 
     @GetMapping("/addorganization")
     public String showOrganization (Model model){
-        model.addAttribute("newOrganization", new Organization());
+        model.addAttribute("newOrganization", showOrganization());
         return "addorganization";
 
     }
 
     @GetMapping("/startdate")
     public String showStartDate (Model model){
-        model.addAttribute("newStartDate", new StartDate());
+        model.addAttribute("newStartDate", showStartDate());
         return "startdate";
     }
 
     @GetMapping("/enddate")
     public String showEndDate (Model model){
-        model.addAttribute("newenddate", new EndDate());
+        model.addAttribute("newenddate", showEndDate());
         return "enddate";
     }
 
     @PostMapping("/showAllData")
-    public String showAllData (@Valid @ModelAttribute){
-        model.addAttribute("newAllData")
+    public String showAllData (@Valid @ModelAttribute ("allData") data Data, BindingResult bindingResult )
+    {
+        Model model;
+        model.addAttribute("showalldata", new Data());
+        )
     }
 
+    @GetMapping("/showalldata")
+    public @ResponseBody String showAllData()
+    {
+        Iterable<Name> nameList = NameRepository.findAll();
+        return nameList.toString();
+    }
 
 }
