@@ -64,7 +64,7 @@ public class MainController
     {
         Model model;
         model.addAttribute("showalldata", new Data());
-        )
+
     }
 
     @GetMapping("/showalldata")
