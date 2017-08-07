@@ -5,17 +5,22 @@
     <title>Robo Resume Employment Submission</title>
 </head>
 <body>
-<h1>Robo Resume Employment Submitted</h1>
-<h8>Your employment form was received! Here is what was submitted:</h8>
+<h1>Robo Resume Submitted</h1>
+<h8>Your resume was received! Here is what was submitted:</h8>
 
-<form action="#" th:action="@{addname}" th:object="${name}" method="post" >
-    <p>Name: <input type="text" th:field="*{name}" /></p>
-    <p>Email: <input type="text" th:field="*{email}" /></p>
-    <p>Organization: <input type="text" th:field="*{organization}" /></p>
-    <p>Start Date: <input type="text" th:field="*{startdate}" /></p>
-    <p>End Date: <input type="text" th:field="*{enddate}" /></p>
+<table>
+<tr>
+	<td><p>"${name.id}"</p></td>
+	<td>"${email.id}"</td>
+	<td>"${organization.id}"</td>
+	<td>"${startDate.id}"</td>
+	<td>"${endDate.id}"</td>
+	<td>"${daysEmployed.id}"</td>
+</tr>
+	<
+</table>
 
 
-    <input type="submit" value="Exit Resume" /> <input type="submit" value="Add another form" />
+    <input type="submit" value="Exit Resume" /> <input type="submit" value="Add another resume" />
 </body>
 </html>
