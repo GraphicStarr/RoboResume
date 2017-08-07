@@ -16,66 +16,78 @@ public class Job {
     @NotNull
     @Min(1)
     @Id
-    private long name;
+    private String name;
 
     @NotNull
     @Size(min = 5, max = 30)
     private String email;
     private String organization;
 
-    @DateTimeFormat
+    @DateTimeFormat(pattern = "mm/dd/yyyy")
     private String startDate;
     
-    @DateTimeFormat
+    @DateTimeFormat(pattern = "mm/dd/yyyy")
     private String endDate;
     
     long daysEmployed;
 
-    public long getName() {
+    public String getName()
+    {
         return name;
     }
 
-    public void setName(long name) {
+    public void setName(String name)
+    {
         this.name = name;
     }
 
-    public String getEmail() {
+    public String getEmail()
+    {
         return email;
     }
 
-    public void setEmail(String email) {
+    public void setEmail(String email)
+    {
         this.email = email;
     }
 
-    public String getOrganization() {
+    public String getOrganization()
+    {
         return organization;
     }
 
-    public void setOrganization(String organization) {
+    public void setOrganization(String organization)
+    {
         this.organization = organization;
     }
 
-    public String getStartDate() {
+    public String getStartDate()
+    {
         return startDate;
     }
 
-    public void setStartDate(String startDate) {
+    public void setStartDate(String startDate)
+    {
         this.startDate = startDate;
     }
 
-    public String getEndDate() {
+    public String getEndDate()
+    {
         return endDate;
     }
 
-    public void setEndDate(String endDate) {
+    public void setEndDate(String endDate)
+    {
         this.endDate = endDate;
     }
 
-    public long getDaysEmployed() {
+    public long getDaysEmployed()
+    {
         return daysEmployed;
     }
 
-    public void setDaysEmployed(long daysEmployed) {
+    public void setDaysEmployed(long daysEmployed)
+    {
         this.daysEmployed = daysEmployed;
     }
 }
