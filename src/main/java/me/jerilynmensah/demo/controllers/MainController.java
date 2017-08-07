@@ -21,6 +21,12 @@ public class MainController
 
 
 {
+	Date date = new Date();
+	dateFormat df = new simpleDateFormat("mm/dd/yyyy");
+	
+	@Auotwired
+	NameRepository nameRespository;
+	
     @GetMapping("/")
     public String showIndex (Model model){
         String myMessage = "Welcome to Robo Resume!";
@@ -29,32 +35,37 @@ public class MainController
     }
 
     @GetMapping("/addname")
-    public String showName (Model model){
+    public String showName (Model model)
+    {
         model.addAttribute("newName",  showName());
         return "addname";
     }
 
     @GetMapping("/addemail")
-    public String showEmail (Model model){
+    public String showEmail (Model model)
+    {
         model.addAttribute("newEmail", showEmail());
         return "addemail";
     }
 
     @GetMapping("/addorganization")
-    public String showOrganization (Model model){
+    public String showOrganization (Model model)
+    {
         model.addAttribute("newOrganization", showOrganization());
         return "addorganization";
 
     }
 
     @GetMapping("/startdate")
-    public String showStartDate (Model model){
+    public String showStartDate (Model model)
+    {
         model.addAttribute("newStartDate", showStartDate());
         return "startdate";
     }
 
     @GetMapping("/enddate")
-    public String showEndDate (Model model){
+    public String showEndDate (Model model)
+    {
         model.addAttribute("newenddate", showEndDate());
         return "enddate";
     }
@@ -62,10 +73,10 @@ public class MainController
     @PostMapping("/showAllData")
     public String showAllData (@Valid @ModelAttribute ("allData") data Data, BindingResult bindingResult )
     {
-        Model model;
-        model.addAttribute("showalldata", new Data());
-
+        if(bindingResult.hasErrors());
+        return "showalldata;"
     }
+        
 
     @GetMapping("/showalldata")
     public @ResponseBody String showAllData()

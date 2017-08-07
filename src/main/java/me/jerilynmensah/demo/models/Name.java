@@ -2,6 +2,7 @@ package me.jerilynmensah.demo.models;
 
 import org.springframework.format.annotation.DateTimeFormat;
 
+
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.validation.constraints.Min;
@@ -24,8 +25,10 @@ public class Name {
 
     @DateTimeFormat
     private String startDate;
+    
     @DateTimeFormat
     private String endDate;
+    
     long daysEmployed;
 
     public long getName() {
