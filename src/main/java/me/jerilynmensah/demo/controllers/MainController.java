@@ -68,12 +68,11 @@ public class MainController{
 
         // User will enter job into form
     @PostMapping("/addjob")
-    public String showAddJob (@Valid @ModelAttribute ("addjob")Job job, BindingResult bindingResult)
-    {
+    public String showAddJob (@Valid @ModelAttribute ("addjob")Job job, BindingResult bindingResult) {
         Model model;
         model.addAttribute("addjob", new Job());
 
-        if(bindingResult.hasErrors());
+        if (bindingResult.hasErrors()) ;
         {
             return "addjob";
         }
@@ -90,28 +89,27 @@ public class MainController{
 
             job.setEmail() = ("");
         }
-        if (job.getOrganization().isEmpty())
-        {
+        if (job.getOrganization().isEmpty()) {
             job.setOrganization() = ("");
         }
         if (!job.getStartDate().isEmpty()) {
-        }
-            else{
+        } else {
 
             job.setStartDate() = ("");
 
-        if(job.getEndDate()== null)
+            if (job.getEndDate() == null)
 
-        {
-            System.out.println("end null!");
-            job.setEndDate(LocalDate.now());
+            {
+                System.out.println("end null!");
+                job.setEndDate(LocalDate.now());
+            }
+
         }
 
-        }
 
         /** Calculate the number of days in job
-        * by converting the dates in mm/dd/yyyy
-        * format to long number of days
+         * by converting the dates in mm/dd/yyyy
+         * format to long number of days
          */
 
         job.setDaysEmployed(DAYS.toDays(LocalDate.parse(job.getStartDate()), LocalDate.parse(job.getEndDate())));
@@ -119,6 +117,7 @@ public class MainController{
         // The job is stored into database
         jobRepository.save(job);
         return "jobadded";
+    }
 
     @GetMapping("/showjob")
     public String showJob(Model model)
@@ -131,4 +130,4 @@ public class MainController{
     }
 
     }
-}
+
