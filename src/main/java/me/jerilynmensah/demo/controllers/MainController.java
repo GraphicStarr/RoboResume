@@ -1,5 +1,6 @@
 package me.jerilynmensah.demo.controllers;
 
+import com.sun.org.apache.bcel.internal.generic.NEW;
 import me.jerilynmensah.demo.models.Name;
 import me.jerilynmensah.demo.repositories.NameRepository;
 import org.hibernate.validator.constraints.Email;
@@ -59,19 +60,20 @@ public class MainController
         return "enddate";
     }
 
-    @PostMapping("/showAllData")
-    public String showAllData (@Valid @ModelAttribute ("allData") data Data, BindingResult bindingResult )
-    {
-        Model model;
-        model.addAttribute("showalldata", new Data());
-
-    }
-
-    @GetMapping("/showalldata")
+    @GetMapping("/showEmployee")
     public @ResponseBody String showAllData()
     {
         Iterable<Name> nameList = NameRepository.findAll();
         return nameList.toString();
     }
+
+    @PostMapping("/showEmployee")
+    public String showEmployee (@Valid @ModelAttribute ("newEmployee")   new Employee , BindingResult bindingResult )
+    {
+        Model model;
+        model.addAttribute("newemployee", new NewEmployee());
+
+    }
+
 
 }
