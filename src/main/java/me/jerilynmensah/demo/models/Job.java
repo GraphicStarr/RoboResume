@@ -8,7 +8,7 @@ import javax.persistence.Id;
 import javax.validation.constraints.Min;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
-import java.lang.annotation.Documented;
+import java.time.LocalDate;
 
 @Entity
 public class Job {
@@ -27,9 +27,10 @@ public class Job {
     private String startDate;
     
     @DateTimeFormat(pattern = "mm/dd/yyyy")
-    private String endDate;
+    private LocalDate endDate;
     
     long daysEmployed;
+    private String resume;
 
     public String getName()
     {
@@ -71,12 +72,12 @@ public class Job {
         this.startDate = startDate;
     }
 
-    public String getEndDate()
+    public LocalDate getEndDate()
     {
         return endDate;
     }
 
-    public void setEndDate(String endDate)
+    public void setEndDate(LocalDate endDate)
     {
         this.endDate = endDate;
     }
@@ -89,6 +90,14 @@ public class Job {
     public void setDaysEmployed(long daysEmployed)
     {
         this.daysEmployed = daysEmployed;
+    }
+
+    public String getResume() {
+        return resume;
+    }
+
+    public void setResume(String resume) {
+        this.resume = resume;
     }
 }
 

@@ -23,6 +23,7 @@ public class MainController{
 
     @Autowired
     JobRespository jobRepository;
+    private String showResume;
 
     // This is the welcome page for Robo Resume
     @GetMapping("/")
@@ -113,19 +114,20 @@ public class MainController{
         * format to long number of days
          */
 
-        job.setDaysEmployed(DAYS.toDays(job.getStartDate(), job.getEndDate()));
+        job.setDaysEmployed(DAYS.toDays(LocalDate.parse(job.getStartDate()), LocalDate.parse(job.getEndDate())));
 
         // The job is stored into database
         jobRepository.save(job);
         return "jobadded";
 
-
-    @GetMapping("/viewresume")
-    public String viewresume(Model model)
+    @GetMapping("/showjob")
+    public String showJob(Model model)
     {
-        Iterable<Job> jobList = JobRespository.findAll();
-        model.addAttribute("job", Job);
-        return "viewresume";
+        Iterable<Job> jobList = jobRepository.findAll();
+
+        // Show information of resume
+        model.addAttribute("job", jobList);
+        return "showjob";
     }
 
     }
