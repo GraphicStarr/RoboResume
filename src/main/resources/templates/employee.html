@@ -10,12 +10,16 @@
 
 
 <form action="#" th:action="@{addname}" th:object="${name}" method="post" >
+
     <p>Name: <p th:text="${newEmployee.name}" /></p>
     <p>Email: <p th:text="${newEmployee.email}" /></p>
     <p>Organization: <p th:text="${newEmployee.organization}" /></p>
     <p>Start Date: <p th:text="${newEmployee.startdate}" /></p>
     <p>End Date: <p th:text="${newEmployee.enddate}" /></p>
-    <p> Number of days worked: <p th:text="${newEmployee.daysEmployed}"/> </p>
+    <p>Number of days worked: <p th:text="${newEmployee.daysEmployed}"/> </p>
+
+    <th:block <p th:each="${newEmployee}" /></th:block>
+
 
 
     <input type="submit" value="Exit Resume" /> <input type="submit" value="Add another resume" />

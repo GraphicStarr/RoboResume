@@ -1,7 +1,7 @@
 package me.jerilynmensah.demo.controllers;
 
 import me.jerilynmensah.demo.models.Job;
-import me.jerilynmensah.demo.repositories.NameRepository;
+import me.jerilynmensah.demo.repositories.JobRepository;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -19,6 +19,7 @@ import static java.util.concurrent.TimeUnit.DAYS;
 public class MainController
 
 
+    // This is the welcome page for Robo Resume
 {
     @GetMapping("/")
     public String showIndex (Model model){
@@ -26,6 +27,8 @@ public class MainController
         model.addAttribute("message", myMessage);
         return "index";
     }
+
+    // This will show the form of the resume
 
     @GetMapping("/addname")
     public String showName (Model model){
@@ -58,6 +61,7 @@ public class MainController
         return "enddate";
     }
 
+        // User will enter job into form
     @PostMapping("/addjob")
     public String showAddJob (@Valid @ModelAttribute ("addJob") new Job, BindingResult bindingResult )
     {
@@ -97,7 +101,8 @@ public class MainController
 
         // Calculate the number of days in job
         job.setDaysEmployed(DAYS.between(job.getStartDate(), job.getEndDate()));
-        //save the job to the database
+
+        // The job is stored into database
         jobs.save(job);
         return "jobadded";
 
@@ -105,7 +110,7 @@ public class MainController
     @GetMapping("/viewresume")
     public @ResponseBody String viewresume(Model model)
     {
-        Iterable<Resume> jobList = NameRepository.findAll();
+        Iterable<Resume> jobList = JobRepository.findAll();
         model.addAttribute("job", Job);
         return "viewresume";
     }
