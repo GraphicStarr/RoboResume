@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import javax.validation.Valid;
 import java.time.LocalDate;
 
 import static java.util.concurrent.TimeUnit.DAYS;
@@ -58,7 +59,7 @@ public class MainController
     }
 
     @PostMapping("/addjob")
-    public String showaddJob (@ModelAttribute ("addJob") new Job, BindingResult bindingResult )
+    public String showAddJob (@Valid @ModelAttribute ("addJob") new Job, BindingResult bindingResult )
     {
         Model model;
         model.addAttribute("addjob", new Job());
