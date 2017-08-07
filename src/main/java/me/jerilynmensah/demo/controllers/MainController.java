@@ -1,9 +1,7 @@
 package me.jerilynmensah.demo.controllers;
 
-import me.jerilynmensah.demo.models.Name;
+import me.jerilynmensah.demo.models.Job;
 import me.jerilynmensah.demo.repositories.NameRepository;
-import org.hibernate.validator.constraints.Email;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -12,9 +10,9 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import javax.validation.Valid;
+import java.time.LocalDate;
 
-import static com.sun.xml.internal.ws.policy.sourcemodel.wspolicy.XmlToken.All;
+import static java.util.concurrent.TimeUnit.DAYS;
 
 @Controller
 public class MainController
@@ -59,19 +57,57 @@ public class MainController
         return "enddate";
     }
 
-    @PostMapping("/showAllData")
-    public String showAllData (@Valid @ModelAttribute ("allData") data Data, BindingResult bindingResult )
+    @PostMapping("/addjob")
+    public String showaddJob (@ModelAttribute ("addJob") new Job, BindingResult bindingResult )
     {
         Model model;
-        model.addAttribute("showalldata", new Data());
+        model.addAttribute("addjob", new Job());
 
-    }
+        if(bindingResult.hasErrors();
+        {
+            return "addjob";
+        }
 
-    @GetMapping("/showalldata")
-    public @ResponseBody String showAllData()
+        // Prompt user to enter employment information
+        if (job.getName().isEmpty())
+        {
+            job.setName = ("");
+        }
+        if (job.getEmail().isEmpty()) {
+
+            job.setEmail = ("");
+        }
+        if (job.getOrganization().isEmpty())
+        {
+            job.setOrganization() = ("");
+        }
+        if (job.getStartDate().isEmpty()) {
+
+            job.setStartDate = ("");
+
+        if(job.getEndDate()== null)
+
+        {
+            System.out.println("end null!");
+            job.setEndDate(LocalDate.now());
+        }
+
+        }
+
+        // Calculate the number of days in job
+        job.setDaysEmployed(DAYS.between(job.getStartDate(), job.getEndDate()));
+        //save the job to the database
+        jobs.save(job);
+        return "jobadded";
+
+
+    @GetMapping("/viewresume")
+    public @ResponseBody String viewresume(Model model)
     {
-        Iterable<Name> nameList = NameRepository.findAll();
-        return nameList.toString();
+        Iterable<Resume> jobList = NameRepository.findAll();
+        model.addAttribute("job", Job);
+        return "viewresume";
     }
 
+}
 }
